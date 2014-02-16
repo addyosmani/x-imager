@@ -4,6 +4,14 @@ A Polymer element for responsive images with Imager.js
 
 > Maintained by [Addy Osmani](https://github.com/addyosmani).
 
+## Installation
+
+Install using [Bower](http://bower.io):
+
+    ```shell
+    $ bower install x-imager
+    ```
+
 ## Usage
 
 1. Import Web Components' polyfill (platform.js)
