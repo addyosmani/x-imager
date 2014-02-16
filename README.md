@@ -4,6 +4,10 @@ A Polymer element for responsive images with Imager.js
 
 > Maintained by [Addy Osmani](https://github.com/addyosmani).
 
+## Demo
+
+> [Check it live](http://addyosmani.github.io/x-imager/index.html).
+
 ## Installation
 
 Install using [Bower](http://bower.io):
@@ -37,7 +41,7 @@ Install using [Bower](http://bower.io):
 Attribute  | Options                   | Default             | Description
 ---        | ---                       | ---                 | ---
 `src`      | *string*                  | ``                  | URL endpoint for images
-`availableWidths`      | *space separated list*                  | ``                  | available image widths
+`widths`      | *space separated list*                  | ``                  | available image widths
 `width`      | *number*                  | ``                  | enforced size of the image placeholder
 `selector`      | *string*                  | `delayed-image-load`                  | used to locate your div placeholders
 `class`      | *string*                  | ``                  | Class name to give your resizable images
@@ -49,15 +53,15 @@ Attribute  | Options                   | Default             | Description
 ## Examples:
 
 ```html
-<x-imager availableWidths="200 260 320 600" src="http://placehold.it/{width}" width="340"></x-imager>
+<x-imager widths="200 260 320 600" src="http://placehold.it/{width}" width="340"></x-imager>
 ```
 
 ```html
-<x-imager availableWidths="400 460 420 1200" src="http://placehold.it/{width}" width="500" class="img-replace" resize="false" className="imagered"></x-imager>
+<x-imager widths="400 460 420 1200" src="http://placehold.it/{width}" width="500" class="img-replace" resize="false" className="imagered"></x-imager>
 ```
 
 ```html
-<x-imager availableWidths="400 460 420 1200" src="http://placehold.it/{width}" width="400" class="img-replace" resize="false" className="imagered" scrollDelay="100" lazyload="true"></x-imager>
+<x-imager widths="400 460 420 1200" src="http://placehold.it/{width}" width="400" class="img-replace" resize="false" className="imagered" scrollDelay="100" lazyload="true"></x-imager>
 ```
 
 ## License
