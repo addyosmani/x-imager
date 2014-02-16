@@ -25,32 +25,30 @@ scrollDelay: Number
   <template>
     <style>
       x-imager img {
-      	max-width: 100%;
+        max-width: 100%;
       }
     </style>
 
-	<div id="placeholder" class="{{selector}}" data-src="{{src}}" data-width="{{width}}"></div>
+    <div id="placeholder" class="{{selector}}" data-src="{{src}}" data-width="{{width}}"></div>
 
   </template>
-<script>
-   Polymer('x-imager', {
-    widths: '',
-    selector: 'delayed-image-load',
-    class: '',
-    resize: true,
-    lazyload: false,
-    scrollDelay: 0,
-		ready: function(){
-			var imager = new Imager(this.shadowRoot.querySelectorAll('.' + this.selector), {
-        availableWidths: (this.widths).split(' '),
-        onResize: this.resize,
-        className: this.class,
-        lazyload: this.lazyload,
-        scrollDelay: this.scrollDelay
-      });
-		}
-	});
+  <script>
+    Polymer('x-imager', {
+      widths: '',
+      selector: 'delayed-image-load',
+      class: '',
+      resize: true,
+      lazyload: false,
+      scrollDelay: 0,
+      ready: function () {
+        var imager = new Imager(this.shadowRoot.querySelectorAll('.' + this.selector), {
+          availableWidths: (this.widths).split(' '),
+          onResize: this.resize,
+          className: this.class,
+          lazyload: this.lazyload,
+          scrollDelay: this.scrollDelay
+        });
+      }
+    });
   </script>
 </polymer-element>
-
-
