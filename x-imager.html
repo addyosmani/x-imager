@@ -4,7 +4,7 @@
 
 <!--
 // Available widths for your images
-availableWidths: [Array of numbers],
+availableWidths: space separated list,
 
 // Selector to be used to locate your div placeholders
 selector: '',
@@ -34,7 +34,7 @@ scrollDelay: Number
   </template>
 <script>
    Polymer('x-imager', {
-    availableWidths: [],
+    availableWidths: '',
     selector: 'delayed-image-load',
     class: '',
     resize: true,
@@ -42,7 +42,7 @@ scrollDelay: Number
     scrollDelay: 0,
 		ready: function(){
 			var imager = new Imager(this.shadowRoot.querySelectorAll('.' + this.selector), {
-        availableWidths: this.availableWidths,
+        availableWidths: (this.availableWidths).split(' '),
         onResize: this.resize,
         className: this.class,
         lazyload: this.lazyload,

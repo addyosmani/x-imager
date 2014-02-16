@@ -29,7 +29,7 @@ A Polymer element for responsive images with Imager.js
 Attribute  | Options                   | Default             | Description
 ---        | ---                       | ---                 | ---
 `src`      | *string*                  | ``                  | URL endpoint for images
-`availableWidths`      | *array*                  | `[]`                  | available image widths
+`availableWidths`      | *space separated list*                  | ``                  | available image widths
 `width`      | *number*                  | ``                  | enforced size of the image placeholder
 `selector`      | *string*                  | `delayed-image-load`                  | used to locate your div placeholders
 `class`      | *string*                  | ``                  | Class name to give your resizable images
