@@ -1,56 +1,53 @@
 <link rel="import" href="app/bower_components/polymer/polymer.html"/>
-
 <script src="app/bower_components/imager.js/dist/Imager.min.js"></script>
 
 <!--
+<x-imager>
+
 // Available widths for your images
-widths: space separated list,
+widths: space separated list
 
 // Selector to be used to locate your div placeholders
-selector: '',
+selector: ''
 
 // Class name to give your resizable images
-className: '',
+className: ''
 
 // If set to true, Imager will update the src attribute of the relevant images
-resize: Boolean,
+resize: Boolean
 
 // Toggle the lazy load functionality on or off
-lazyload: Boolean,
+lazyload: Boolean
 
 // Used alongside the lazyload feature (helps performance by setting a higher delay)
 scrollDelay: Number
 -->
 <polymer-element name="x-imager" attributes="src widths width selector class resize lazyload scrollDelay">
-  <template>
-    <style>
-      x-imager img {
-      	max-width: 100%;
-      }
-    </style>
-
-	<div id="placeholder" class="{{selector}}" data-src="{{src}}" data-width="{{width}}"></div>
-
-  </template>
-<script>
-   Polymer('x-imager', {
-    widths: '',
-    selector: 'delayed-image-load',
-    class: '',
-    resize: true,
-    lazyload: false,
-    scrollDelay: 0,
-		ready: function(){
-			var imager = new Imager(this.shadowRoot.querySelectorAll('.' + this.selector), {
-        availableWidths: (this.widths).split(' '),
-        onResize: this.resize,
-        className: this.class,
-        lazyload: this.lazyload,
-        scrollDelay: this.scrollDelay
-      });
-		}
-	});
-  </script>
+    <template>
+        <style>
+            x-imager img {
+                max-width: 100%;
+            }
+        </style>
+        <div id="placeholder" class="{{selector}}" data-src="{{src}}" data-width="{{width}}"></div>
+    </template>
+    <script>
+        Polymer('x-imager', {
+            widths: '',
+            selector: 'delayed-image-load',
+            class: '',
+            resize: true,
+            lazyload: false,
+            scrollDelay: 0,
+            ready: function () {
+                var imager = new Imager(this.shadowRoot.querySelectorAll('.' + this.selector), {
+                    availableWidths: (this.widths).split(' '),
+                    onResize: this.resize,
+                    className: this.class,
+                    lazyload: this.lazyload,
+                    scrollDelay: this.scrollDelay
+                });
+            }
+        });
+    </script>
 </polymer-element>
-
-
