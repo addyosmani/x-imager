@@ -4,7 +4,7 @@
 
 <!--
 // Available widths for your images
-availableWidths: space separated list,
+widths: space separated list,
 
 // Selector to be used to locate your div placeholders
 selector: '',
@@ -21,7 +21,7 @@ lazyload: Boolean,
 // Used alongside the lazyload feature (helps performance by setting a higher delay)
 scrollDelay: Number
 -->
-<polymer-element name="x-imager" attributes="src availableWidths width selector class resize lazyload scrollDelay">
+<polymer-element name="x-imager" attributes="src widths width selector class resize lazyload scrollDelay">
   <template>
     <style>
       x-imager img {
@@ -34,7 +34,7 @@ scrollDelay: Number
   </template>
 <script>
    Polymer('x-imager', {
-    availableWidths: '',
+    widths: '',
     selector: 'delayed-image-load',
     class: '',
     resize: true,
@@ -42,7 +42,7 @@ scrollDelay: Number
     scrollDelay: 0,
 		ready: function(){
 			var imager = new Imager(this.shadowRoot.querySelectorAll('.' + this.selector), {
-        availableWidths: (this.availableWidths).split(' '),
+        availableWidths: (this.widths).split(' '),
         onResize: this.resize,
         className: this.class,
         lazyload: this.lazyload,
