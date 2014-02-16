@@ -1,4 +1,4 @@
 x-imager
 ========
 
-A Polymer responsive images element
+A Polymer responsive images element using Imager.js

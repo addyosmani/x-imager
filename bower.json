@@ -1,0 +1,27 @@
+{
+  "name": "x-imager",
+  "version": "0.0.0",
+  "authors": [
+    "Addy Osmani <addyosmani@gmail.com>"
+  ],
+  "description": "Responsive images using Imager.js",
+  "main": "x-imager.html",
+  "keywords": [
+    "responsive",
+    "images"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "platform": "Polymer/platform#~0.2.0",
+    "imager.js": "~0.1.0",
+    "polymer": "Polymer/polymer#~0.2.0"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "name": "imager",
+  "main": "Imager.js",
+  "version": "0.1.0",
+  "homepage": "https://github.com/BBC-News/Imager.js",
+  "authors": [
+    "Mark McDonnell",
+    "Addy Osmani",
+    "Tom Maslen",
+    "Thomas Parisot"
+  ],
+  "description": "Imager.js is an alternative solution to the issue of how to handle responsive image loading, created by developers at BBC News.",
+  "keywords": [
+    "responsive",
+    "srcset",
+    "picturefill",
+    "polyfill",
+    "shim",
+    "img",
+    "images",
+    "web",
+    "component"
+  ],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    "Demo*",
+    "demos"
+  ],
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.0",
+    "commit": "79efa35504d1512476bce887e24756ccbc42f647"
+  },
+  "_source": "git://github.com/BBC-News/Imager.js.git",
+  "_target": "~0.1.0",
+  "_originalSource": "imager.js",
+  "_direct": true
+}
