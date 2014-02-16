@@ -12,9 +12,9 @@ A [Polymer](http://polymer-project.org) element for responsive images with [Imag
 
 Install using [Bower](http://bower.io):
 
-    ```shell
-    $ bower install x-imager
-    ```
+```shell
+ bower install x-imager
+```
 
 ## Usage
 
