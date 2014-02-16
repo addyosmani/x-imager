@@ -1,8 +1,8 @@
-# &lt;x-imger&gt;
+# &lt;x-imager&gt;
 
 A Polymer element for responsive images with Imager.js
 
-> Maintained by [Your Name](https://github.com/yourname).
+> Maintained by [Addy Osmani](https://github.com/addyosmani).
 
 ## Usage
 
