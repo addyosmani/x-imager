@@ -16,15 +16,15 @@ Supported attributes:
 
 Examples:
 
-```
-&lt;x-imager availableWidths=&quot;[200, 260, 320, 600]&quot; src=&quot;http://placehold.it/{width}&quot; width=&quot;340&quot;&gt;&lt;/x-imager&gt;
-```
-
-```
-&lt;x-imager availableWidths=&quot;[400, 460, 420, 1200]&quot; src=&quot;http://placehold.it/{width}&quot; width=&quot;320&quot; class=&quot;img-replace&quot;&gt;&lt;/x-imager&gt;
+```html
+<x-imager availableWidths="[200, 260, 320, 600]" src="http://placehold.it/{width}" width="340"></x-imager>
 ```
 
+```html
+<x-imager availableWidths="[400, 460, 420, 1200]" src="http://placehold.it/{width}" width="500" class="img-replace" resize="false" className="imagered"></x-imager>
 ```
-&lt;x-imager availableWidths=&quot;[400, 460, 420, 1200]&quot; src=&quot;http://placehold.it/{width}&quot; width=&quot;400&quot; class=&quot;img-replace&quot; resize=&quot;false&quot; className=&quot;imagered&quot; scrollDelay=&quot;100&quot; lazyload=&quot;true&quot;&gt;&lt;/x-imager&gt;
+
+```html
+<x-imager availableWidths="[400, 460, 420, 1200]" src="http://placehold.it/{width}" width="400" class="img-replace" resize="false" className="imagered" scrollDelay="100" lazyload="true"></x-imager>
 ```
 
