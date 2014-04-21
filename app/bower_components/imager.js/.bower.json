@@ -39,6 +39,5 @@
   },
   "_source": "git://github.com/BBC-News/Imager.js.git",
   "_target": "~0.1.0",
-  "_originalSource": "imager.js",
-  "_direct": true
+  "_originalSource": "imager.js"
 }
