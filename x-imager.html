@@ -66,6 +66,9 @@
             value: 'delayed-image-load',
             notify: true
           },
+          widthInterpolator:{
+            type:String
+          },
           src: { notify: true },
           width: { notify: true },
           widths: {
@@ -76,7 +79,7 @@
         },
         ready: function () {
           var me= this;
-          var imager = new Imager(this.querySelectorAll('.' + this.selector), {
+          var options = {
             availableWidths: this.widths.split(' '),
             onResize: this.resize,
             className: this.class,
@@ -84,11 +87,16 @@
             lazyloadOffset: this.lazyloadOffset,
             scrollDelay: this.scrollDelay,
             onImagesReplaced: function(images) {
-               debugger;
               me.fire('imagereplaced',me, this);
             }
 
-          });
+          }
+          if(this.widthInterpolator){
+            options.widthInterpolator = eval('('+this.widthInterpolator+')');
+          }
+
+
+          var imager = new Imager(this.querySelectorAll('.' + this.selector), options);
           if(this.lazyload){
             imager.viewportHeight = document.body.clientHeight;
           }
