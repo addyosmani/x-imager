@@ -1,8 +1,9 @@
 {
   "name": "x-imager",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "authors": [
-    "Addy Osmani <addyosmani@gmail.com>"
+    "Addy Osmani <addyosmani@gmail.com>",
+    "Justin Early <earlyster@gmail.com>"
   ],
   "description": "Responsive images using Imager.js",
   "main": "x-imager.html",
