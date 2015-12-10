@@ -1,53 +1,99 @@
-<link rel="import" href="app/bower_components/polymer/polymer.html"/>
-<script src="app/bower_components/imager.js/dist/Imager.min.js"></script>
+<link rel="import" href="bower_components/polymer/polymer.html">
+<script src="bower_components/imager.js/dist/Imager.min.js"></script>
 
-<!--
-<x-imager>
+  <!--
+  <x-imager>
 
-// Available widths for your images
-widths: space separated list
+  // Available widths for your images
+  widths: space separated list
 
-// Selector to be used to locate your div placeholders
-selector: ''
+  // Selector to be used to locate your div placeholders
+  selector: ''
 
-// Class name to give your resizable images
-className: ''
+  // Class name to give your resizable images
+  className: ''
 
-// If set to true, Imager will update the src attribute of the relevant images
-resize: Boolean
+  // If set to true, Imager will update the src attribute of the relevant images
+  resize: Boolean
 
-// Toggle the lazy load functionality on or off
-lazyload: Boolean
+  // Toggle the lazy load functionality on or off
+  lazyload: Boolean
 
-// Used alongside the lazyload feature (helps performance by setting a higher delay)
-scrollDelay: Number
--->
-<polymer-element name="x-imager" attributes="src widths width selector class resize lazyload scrollDelay">
+  // Used alongside the lazyload feature (helps performance by setting a higher delay)
+  scrollDelay: Number
+  -->
+  <dom-module id="x-imager">
+    <style>
+              x-imager img {
+                  max-width: 100%;
+              }
+          </style>
     <template>
-        <style>
-            x-imager img {
-                max-width: 100%;
-            }
-        </style>
-        <div id="placeholder" class="{{selector}}" data-src="{{src}}" data-width="{{width}}"></div>
-    </template>
+      <div style="width:100%">
+          <div id="placeholder" class$="{{selector}}" data-src$="{{src}}"></div>
+      </div>
+      </template>
     <script>
-        Polymer('x-imager', {
-            widths: '',
-            selector: 'delayed-image-load',
-            class: '',
-            resize: true,
-            lazyload: false,
-            scrollDelay: 0,
-            ready: function () {
-                var imager = new Imager(this.shadowRoot.querySelectorAll('.' + this.selector), {
-                    availableWidths: (this.widths).split(' '),
-                    onResize: this.resize,
-                    className: this.class,
-                    lazyload: this.lazyload,
-                    scrollDelay: this.scrollDelay
-                });
+      Polymer({
+        is: 'x-imager',
+        properties: {
+          class: {
+            type: String,
+            value: '',
+            notify: true
+          },
+          lazyload: {
+            type: Boolean,
+            value: false,
+            notify: true
+          },
+          lazyloadOffset:{
+            type:Number,
+            value:10
+          },
+          resize: {
+            type: Boolean,
+            value: true,
+            notify: true
+          },
+          scrollDelay: {
+            type: Number,
+            value: 0,
+            notify: true
+          },
+          selector: {
+            type: String,
+            value: 'delayed-image-load',
+            notify: true
+          },
+          src: { notify: true },
+          width: { notify: true },
+          widths: {
+            type: String,
+            value: '',
+            notify: true
+          }
+        },
+        ready: function () {
+          var me= this;
+          var imager = new Imager(this.querySelectorAll('.' + this.selector), {
+            availableWidths: this.widths.split(' '),
+            onResize: this.resize,
+            className: this.class,
+            lazyload: this.lazyload,
+            lazyloadOffset: this.lazyloadOffset,
+            scrollDelay: this.scrollDelay,
+            onImagesReplaced: function(images) {
+               debugger;
+              me.fire('imagereplaced',me, this);
             }
-        });
+
+          });
+          if(this.lazyload){
+            imager.viewportHeight = document.body.clientHeight;
+          }
+
+        }
+      });
     </script>
-</polymer-element>
+  </dom-module>
