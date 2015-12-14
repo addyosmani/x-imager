@@ -1,7 +1,7 @@
 <html>
 <head>
 	<title>x-imager demo</title>
-	<script src="app/bower_components/platform/platform.js"></script>
+  <script src="webcomponentsjs/webcomponents.min.js"></script>
 	<link rel="import" href="x-imager.html">
 	<style>
 	x-imager {
@@ -17,7 +17,7 @@
 <h1>&lt;x-imager&gt;</h1>
 <h2>A <a href="http://polymer-project.org">Polymer</a> element for responsive images with <a href="https://github.com/BBC-News/Imager.js/">Imager.js</a></h2>
 
-<x-imager widths="200 260 320 450 600" src="http://placehold.it/{width}" width="510"></x-imager>
+<x-imager widths="200 260 320 450 600" src="http://placehold.it/{width}"></x-imager>
 
 <p>
 <h4>Source</h4>
@@ -55,6 +55,47 @@
 &lt;x-imager widths=&quot;400 460 420 1200&quot; src=&quot;http://placehold.it/{width}&quot; width=&quot;400&quot; class=&quot;img-replace&quot; resize=&quot;false&quot; className=&quot;imagered&quot; scrollDelay=&quot;100&quot; lazyload=&quot;true&quot;&gt;&lt;/x-imager&gt;
 </code>
 </p>
+
+<x-imager widths="400 460 420 1200" width-interpolator="function(width,pixelRatio){ return width +'x'+ (width*9/16); }" src="http://placehold.it/{width}" width="400" class="img-replace" resize="false" className="imagered" scrollDelay="100" lazyload="true"></x-imager>
+
+<p>
+<h4>Source</h4>
+<code>
+&lt;x-imager widths=&quot;400 460 420 1200&quot; width-interpolator=&quot;function(width,pixelRatio){ return width +'x'+ (width*9/16); }&quot; src=&quot;http://placehold.it/{width}&quot; width=&quot;400&quot; class=&quot;img-replace&quot; resize=&quot;false&quot; className=&quot;imagered&quot; scrollDelay=&quot;100&quot; lazyload=&quot;true&quot;&gt;&lt;/x-imager&gt;
+</code>
+</p>
+
+
+
+<dom-module id="template-example">
+		<template>
+			<template is="dom-repeat" items="{{images}}">
+			<x-imager widths="100 200 300 400 460 420" width-interpolator="function(width,pixelRatio){ return width +'x'+ (width*9/16); }" src="http://placehold.it/{width}" width="400" class="img-replace" resize="false" className="imagered" scrollDelay="100" lazyload="true"></x-imager>
+			</template>
+  </template>
+
+  <script>
+    Polymer({
+      is: 'template-example',
+      ready: function() {
+        this.images = [
+            {test:'test'},
+						{test:'test'}
+        ];
+      }
+    });
+  </script>
+
+</dom-module>
+
+<template-example></template-example>
+
+	<p>
+	<h4>Template Example</h4>
+	<code>
+	&lt;x-imager widths=&quot;400 460 420 1200&quot; width-interpolator=&quot;function(width,pixelRatio){ return width +'x'+ (width*9/16); }&quot; src=&quot;http://placehold.it/{width}&quot; width=&quot;400&quot; class=&quot;img-replace&quot; resize=&quot;false&quot; className=&quot;imagered&quot; scrollDelay=&quot;100&quot; lazyload=&quot;true&quot;&gt;&lt;/x-imager&gt;
+	</code>
+	</p>
 
 
 </body>
