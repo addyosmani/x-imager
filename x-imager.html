@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <script src="../imager.js/dist/Imager.min.js"></script>
 
-  <!--
+<!--
   <x-imager>
 
   // Available widths for your images
@@ -22,86 +22,127 @@
   // Used alongside the lazyload feature (helps performance by setting a higher delay)
   scrollDelay: Number
   -->
-  <dom-module id="x-imager">
-    <style>
-              x-imager img {
-                  max-width: 100%;
-              }
-          </style>
-    <template>
-      <div style="width:100%">
-          <div id="placeholder" class$="{{selector}}" data-src$="{{src}}"></div>
-      </div>
-      </template>
-    <script>
-      Polymer({
-        is: 'x-imager',
-        properties: {
-          class: {
-            type: String,
+<dom-module id="x-imager">
+  <style>
+    div {
+      display: inline-block;
+    }
+
+    x-imager img {
+      max-width: 100%;
+    }
+  </style>
+  <template>
+    <div>
+      <div id="placeholder" class$="{{selector}}" data-src$="{{src}}"></div>
+    </div>
+  </template>
+  <script>
+    Polymer({
+      is: 'x-imager',
+      properties: {
+        class: {
+          type: String,
             value: '',
             notify: true
-          },
-          lazyload: {
-            type: Boolean,
-            value: false,
-            notify: true
-          },
-          lazyloadOffset:{
-            type:Number,
-            value:10
-          },
-          resize: {
-            type: Boolean,
-            value: true,
-            notify: true
-          },
-          scrollDelay: {
-            type: Number,
-            value: 0,
-            notify: true
-          },
-          selector: {
-            type: String,
-            value: 'delayed-image-load',
-            notify: true
-          },
-          widthInterpolator:{
-            type:String
-          },
-          src: { notify: true },
-          width: { notify: true },
-          widths: {
-            type: String,
-            value: '',
-            notify: true
-          }
         },
-        ready: function () {
-          var me= this;
-          var options = {
-            availableWidths: this.widths.split(' '),
-            onResize: this.resize,
-            className: this.class,
-            lazyload: this.lazyload,
-            lazyloadOffset: this.lazyloadOffset,
-            scrollDelay: this.scrollDelay,
-            onImagesReplaced: function(images) {
-              me.fire('imagereplaced',me, this);
-            }
+        lazyload: {
+          type: Boolean,
+          value: false,
+          notify: true
+        },
+        lazyloadOffset: {
+          type: Number,
+          value: 10
+        },
+        resize: {
+          type: Boolean,
+          value: true,
+          notify: true
+        },
+        scrollDelay: {
+          type: Number,
+          value: 0,
+          notify: true
+        },
+        selector: {
+          type: String,
+          value: 'delayed-image-load',
+          notify: true
+        },
+        widthInterpolator: {
+          type: String
+        },
+        src: {
+          notify: true,
+          observer: '_srcChange'
+        },
+        width: {
+          notify: true
+        },
+        widths: {
+          type: String,
+          value: '',
+          notify: true
+        }
+      },
 
-          }
-          if(this.widthInterpolator){
-            options.widthInterpolator = eval('('+this.widthInterpolator+')');
-          }
+      _srcChange:function(newVal, oldVal){
+        if(!oldVal){
+          return;
+        }
+        if(newVal!==oldVal){
+          this.initialize();
+        }
+      },
 
+      ready:function(){
+        if(this.src){
+            this.initialize();
+        }
+      },
 
-          var imager = new Imager(this.querySelectorAll('.' + this.selector), options);
-          if(this.lazyload){
-            imager.viewportHeight = document.body.clientHeight;
+      initialize: function() {
+        var me = this;
+        var options = {
+          availableWidths: this.widths.split(' '),
+          onResize: this.resize,
+          className: this.class,
+          lazyload: this.lazyload,
+          lazyloadOffset: this.lazyloadOffset,
+          scrollDelay: this.scrollDelay,
+          onImagesReplaced: function(images) {
+            me.fire('imagereplaced', me, this);
           }
 
         }
-      });
-    </script>
-  </dom-module>
+        if (this.widthInterpolator) {
+          options.widthInterpolator = eval('(' + this.widthInterpolator + ')');
+        }
+        // monkey patch due to issues with curly braces being escaped in templates
+        Imager.prototype.changeImageSrcToUseNewImageDimensions = function(src, selectedWidth) {
+          src = src.replace(escape('{'), '{')
+            .replace(escape('}'), '}');
+          return src
+            .replace(/{width}/g, Imager.transforms.width(selectedWidth, this.widthsMap))
+            .replace(/{pixel_ratio}/g, Imager.transforms.pixelRatio(this.devicePixelRatio));
+        };
+
+
+        var imager = new Imager(this.querySelectorAll('.' + this.selector), options);
+
+        if (this.resize) {
+          Imager.addEvent(window, 'resize', function() {
+            imager.viewportHeight = document.body.clientHeight;
+            imager.scrolled = true;
+          });
+        }
+
+        if (this.lazyload) {
+          imager.viewportHeight = document.body.clientHeight;
+        }
+
+      }
+    });
+  </script>
+</dom-module>
